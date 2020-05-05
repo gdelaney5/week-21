@@ -1,29 +1,34 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Books from "./pages/Books";
-import Detail from "./pages/Detail";
-import NoMatch from "./pages/NoMatch";
-import Nav from "./components/Nav";
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Header from "./components/Header";
+import Wrap from "./components/Wrap";
 
-function App() {
-  return (
-    <Router>
-      <div>
-        <Nav />
-        <Switch>
-          <Route exact path={["/", "/books"]}>
-            <Books />
-          </Route>
-          <Route exact path="/books/:id">
-            <Detail />
-          </Route>
-          <Route>
-            <NoMatch />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
-  );
+import Search from "./pages/Search";
+import Save from "./pages/Save";
+import Fail from "./pages/Fail";
+
+import "./App.css";
+
+class App extends Component {
+
+  render() {
+    return (
+      <Router>
+        <div>
+          <Navbar />
+          <Header />
+          <Wrap>
+            <Route exact path="/" component={Search} />
+            <Route exact path="/search" component={Search} />
+            <Route exact path="/save" component={Save} />
+            <Route exact path="/fail" component={Fail} />
+          </Wrap>
+        </div>
+      </Router>
+    )
+  }
 }
+
 
 export default App;
